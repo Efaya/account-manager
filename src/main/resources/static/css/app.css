@@ -1,0 +1,42 @@
+.category-block ul {
+    list-style: none;
+}
+.category-block h3 {
+    margin-top: 0;
+}
+.category-block ul li {
+    border-bottom: 1px dashed lightgray;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    line-height: 35px;
+}
+.category-block ul li.entry {
+    cursor: pointer;
+}
+.category-block ul li.adder button {
+    margin-top: 5px;
+}
+.category-block ul li button.btn {
+    float: right;
+}
+.container.import .import-btn {
+    margin-top: 5px;
+}
+.records-block ul {
+    list-style: none;
+    padding: 0;
+}
+.records-block ul li.entry {
+    border-bottom: 1px dashed lightgray;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    line-height: 35px;
+}
+.records-block ul li.entry span.depense {
+    font-weight: bold;
+    color: red;
+}
+.records-block ul li.entry span.revenue {
+    font-weight: bold;
+    color: green;
+}

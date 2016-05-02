@@ -23,12 +23,12 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Category insertAccountRecord(@RequestBody Category category) {
+    public Category insertCategory(@RequestBody Category category) {
         return categoriesRepository.insert(category);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-    public Category updateAccountRecord(@PathVariable String id, @RequestBody Category category) {
+    public Category updateCategory(@PathVariable String id, @RequestBody Category category) {
         return categoriesRepository.save(category);
     }
 

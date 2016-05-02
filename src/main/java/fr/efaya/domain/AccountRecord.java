@@ -21,7 +21,7 @@ public class AccountRecord {
 
     private Date date;
 
-    private Integer value;
+    private Float value;
 
     public String getId() {
         return id;
@@ -63,11 +63,11 @@ public class AccountRecord {
         this.date = date;
     }
 
-    public Integer getValue() {
+    public Float getValue() {
         return value;
     }
 
-    public void setValue(Integer value) {
+    public void setValue(Float value) {
         this.value = value;
     }
 }
