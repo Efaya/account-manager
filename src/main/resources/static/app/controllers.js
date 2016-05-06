@@ -2,24 +2,31 @@
     var AccountManagerController = function($scope, AccountRecord, Category) {
         $scope.months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
         $scope.years = ["2016"];
-        AccountRecord.query(function(response) {
-            $scope.records = [];
-            for (var recordKey in response) {
-                var record = response[recordKey];
-                var recordDate = new Date(record.date);
-                if (!$scope.records[recordDate.getFullYear()]) {
-                    $scope.records[recordDate.getFullYear()] = [];
-                }
-                if (!$scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]]) {
-                    $scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]] = [];
-                }
-                $scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]].push(record);
-            }
-        });
 
-        Category.query(function(response) {
-            $scope.categories = response ? response : [];
-        });
+        $scope.refreshRecords = function() {
+            AccountRecord.query(function (response) {
+                $scope.records = [];
+                for (var recordKey in response) {
+                    var record = response[recordKey];
+                    var recordDate = new Date(record.date);
+                    if (!$scope.records[recordDate.getFullYear()]) {
+                        $scope.records[recordDate.getFullYear()] = [];
+                    }
+                    if (!$scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]]) {
+                        $scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]] = [];
+                    }
+                    $scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]].push(record);
+                }
+            });
+        };
+
+        $scope.refreshCategories = function() {
+            Category.query(function (response) {
+                $scope.categories = response ? response : [];
+            });
+        };
+        $scope.refreshRecords();
+        $scope.refreshCategories();
     };
     AccountManagerController.$inject = ['$scope', 'AccountRecord', 'Category'];
 
@@ -78,10 +85,9 @@
             });
         };
 
-        $scope.removeCategory = function(idx) {
-            var removedCategory = $scope.categories.splice(idx, 1);
+        $scope.removeCategory = function(category) {
             $scope.selectedCategory = {};
-            removeCategory(removedCategory[0].id);
+            removeCategory(category.id);
         };
 
         $scope.removeCategoryValue = function(idx) {
@@ -99,6 +105,12 @@
             });
         };
 
+        $scope.updateCategory = function() {
+            saveCategory($scope.selectedCategory, function() {
+                console.log('Category saved ' + $scope.selectedCategory.label + ' (' + $scope.selectedCategory.id + ') saved');
+            });
+        };
+
         function saveCategory(category, callback) {
             Category.save({'id':category.id}, category, callback);
         }
@@ -106,6 +118,7 @@
         function removeCategory(id) {
             Category.remove({'id':id}, function() {
                 console.log('Category removed ' + id + ' saved');
+                $scope.refreshCategories()
             });
         }
     };
@@ -117,17 +130,46 @@
     HomeCtrl.$inject = ['$scope', 'AccountRecord'];
 
     var RecordsCtrl = function($scope, AccountRecord) {
-        $scope.removeRecord = function(idx) {
-            var removedRecord = $scope.records.splice(idx, 1);
-            AccountRecord.remove({'id':removedRecord[0].id}, function() {
-                console.log('Record removed ' + removedRecord[0].id + ' saved');
+        $scope.removeRecord = function(record) {
+            AccountRecord.remove({'id':record.id}, function() {
+                console.log('Record removed ' + record.id + ' saved');
+                $scope.refreshRecords();
             });
         };
 
         $scope.updateCategory = function(record) {
-            AccountRecord.save({'id':record.id}, record,  function() {
+            AccountRecord.save({'id':record.id}, record, function() {
                 console.log('Record updated : ' + record.id);
             });
+        };
+
+        $scope.addLabelToCategory = function(record) {
+            var label = record.label.indexOf("   ") > -1 ? record.label.split("   ")[0] : record.label;
+            AccountRecord.addLabel({'id':record.id, 'obj': 'category'}, label, function() {
+                console.log('Label added to category successfully !');
+                $scope.refreshCategories();
+            });
+        };
+
+        function hasValueSarting(values, label) {
+            for (var key in values) {
+                if (label.lastIndexOf(values[key], 0) === 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        $scope.isLabelInCategory = function(record) {
+            if (record.category) {
+                var label = record.label.indexOf("   ") > -1 ? record.label.split("   ")[0] : record.label;
+                for (var key in $scope.categories) {
+                    if ($scope.categories[key].id === record.category && ($scope.categories[key].values.indexOf(label) > -1 || hasValueSarting($scope.categories[key].values, label))) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         };
     };
     RecordsCtrl.$inject = ['$scope', 'AccountRecord'];

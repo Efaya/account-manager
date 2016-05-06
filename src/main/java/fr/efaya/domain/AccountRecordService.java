@@ -48,7 +48,7 @@ public class AccountRecordService {
             Date date = df.parse(tokens[0]);
             Float value = Float.parseFloat(tokens[1].replace(",", "."));
             String type = tokens[2];
-            String label = tokens.length > 4 ? (value > 0 ? tokens[5].trim() : tokens[4].trim()) : "";
+            String label = tokens.length > 4 ? (value > 0 || tokens[2].length() == 0 ? tokens[5].trim() : tokens[4].trim()) : "";
 
             AccountRecord accountRecord = new AccountRecord();
             accountRecord.setDate(date);
@@ -67,7 +67,7 @@ public class AccountRecordService {
     private String guessCategory(String label, List<Category> categories) {
         final String value = label.contains("   ") ? label.split("   ")[0] : label;
         for (Category c : categories) {
-            if (c.getValues().indexOf(value) > -1) {
+            if (c.getValues().indexOf(value) > -1 || c.getValues().stream().anyMatch(value::startsWith)) {
                 return c.getId();
             }
         }
@@ -88,5 +88,13 @@ public class AccountRecordService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addLabelToCategory(String id, String label) {
+        AccountRecord record = accountRecordsRepository.findOne(id);
+        Category category = categoriesRepository.findOne(record.getCategory());
+        category.getValues().add(label);
+        category.setValues(category.getValues());
+        categoriesRepository.save(category);
     }
 }

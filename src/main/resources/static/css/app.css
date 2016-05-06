@@ -40,3 +40,6 @@
     font-weight: bold;
     color: green;
 }
+.records-block .records-list {
+    cursor: pointer;
+}

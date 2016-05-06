@@ -60,6 +60,11 @@ public class AccountRecordController {
         return accountRecordService.save(record);
     }
 
+    @RequestMapping(value = "/{id}/category", method = RequestMethod.POST)
+    public void addLabelToCategory(@PathVariable String id, @RequestBody String label) {
+        accountRecordService.addLabelToCategory(id, label);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void removeAccountRecord(@PathVariable String id) {
         accountRecordService.delete(id);

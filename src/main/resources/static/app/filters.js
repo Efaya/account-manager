@@ -14,5 +14,12 @@
 
     };
 
+    var reverse = function() {
+        return function(items) {
+            return items.slice().reverse();
+        };
+    };
+
     angular.module("accountManagerApp.filters").filter('categoryName', categoryName);
+    angular.module("accountManagerApp.filters").filter('reverse', reverse);
 }(angular));

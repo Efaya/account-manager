@@ -1,6 +1,8 @@
 (function(angular) {
     var AccountRecordFactory = function($resource) {
-        return $resource('/accountRecord/:id', {id: '@id'});
+        return $resource('/accountRecord/:id/:obj', {id: '@id', obj: '@obj'}, {
+            addLabel: {method:'POST'}
+        });
     };
     AccountRecordFactory.$inject = ['$resource'];
 
