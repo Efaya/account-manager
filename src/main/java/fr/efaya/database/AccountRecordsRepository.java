@@ -4,6 +4,7 @@ import fr.efaya.domain.AccountRecord;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,5 +13,5 @@ import java.util.List;
  */
 @Repository
 public interface AccountRecordsRepository extends MongoRepository<AccountRecord, String> {
-    List<AccountRecord> findByDateBetween(Date from, Date to);
+    List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to);
 }

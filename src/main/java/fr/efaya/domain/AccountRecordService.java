@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class AccountRecordService {
         return accountRecordsRepository.save(record);
     }
 
-    public List<AccountRecord> findByDateBetween(Date from, Date to) {
+    public List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to) {
         return accountRecordsRepository.findByDateBetween(from, to);
     }
 

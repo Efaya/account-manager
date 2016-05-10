@@ -43,3 +43,24 @@
 .records-block .records-list {
     cursor: pointer;
 }
+.container.home .infos a {
+    cursor: pointer;
+}
+.container.home ul {
+    list-style: none;
+    padding: 0;
+}
+.container.home ul li.entry {
+    border-bottom: 1px dashed lightgray;
+    margin-bottom: 3px;
+    padding-bottom: 3px;
+    line-height: 35px;
+}
+.container.home span.depense {
+    font-weight: bold;
+    color: red;
+}
+.container.home span.revenue {
+    font-weight: bold;
+    color: green;
+}

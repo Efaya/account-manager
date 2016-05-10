@@ -124,10 +124,104 @@
     };
     CategoryCtrl.$inject = ['$scope', '$http', 'Category'];
 
-    var HomeCtrl = function($scope, AccountRecord) {
+    var HomeCtrl = function($scope, AccountRecord, Category) {
+        $scope.selectedCategory = false;
+        $scope.selectedCategoryValues = [];
+        $scope.selectedCategoryLabel = '';
+        $scope.selectedCategorySum = 0;
+        $scope.pastMonths = 1;
+        $scope.labels = [];
+        const defaultCategory = 'Non traité';
 
+        Category.query(function (response) {
+            const categories = response;
+            Object.keys(categories).map(function(value, index) {
+                if (categories[index]) {
+                    $scope.labels.push(categories[index].label);
+                }
+            });
+            $scope.labels.push(defaultCategory);
+            $scope.labels.sort();
+        });
+
+        function buildCategorizedResult(ref) {
+            const result = [];
+            for (var key in ref) {
+                var categoriesFiltered = $scope.categories.filter(function (cat) {
+                    return cat.id === key;
+                });
+                var label = categoriesFiltered.length > 0 ? categoriesFiltered[0].label : defaultCategory;
+                var value = 0;
+                for (var i = 0; i < ref[key].length; i++) {
+                    value += ref[key][i].value < 0 ? Math.abs(ref[key][i].value) : ref[key][i].value;
+                }
+                result[label] = value;
+            }
+            return result;
+        }
+
+        function updateData(result, dest) {
+            for (var j = 0; j < $scope.labels.length; j++) {
+                for (var k in result) {
+                    if (k === $scope.labels[j]) {
+                        dest[j] = result[k];
+                        break;
+                    }
+                }
+            }
+        }
+
+        function retrieveMonthlyRecords() {
+            $scope.dataOutcomes = [];
+            $scope.dataIncomes = [];
+            AccountRecord.monthly({'id':'monthly'}, {monthRef: new Date(), pastMonths: $scope.pastMonths}, function (res) {
+                $scope.monthlyResponse = res;
+                if (res.records.length > 0) {
+                    updateData(buildCategorizedResult(res.categorizedOutcomes), $scope.dataOutcomes);
+                    updateData(buildCategorizedResult(res.categorizedIncomes), $scope.dataIncomes);
+                }
+                $scope.dataIncomes = [$scope.dataIncomes];
+                $scope.dataOutcomes = [$scope.dataOutcomes];
+            });
+        }
+
+        $scope.viewPastMonth = function() {
+            $scope.pastMonths++;
+            retrieveMonthlyRecords();
+        };
+
+        $scope.viewNextMonth = function() {
+            $scope.pastMonths--;
+            retrieveMonthlyRecords();
+        };
+
+        function defineSelectedCategory(refLabel) {
+            var category = $scope.categories.filter(function (val) {
+                return val.label === refLabel;
+            });
+            $scope.selectedCategory = category.length > 0 ? category[0].id : '';
+            $scope.selectedCategoryLabel = refLabel;
+        }
+
+        $scope.viewOutcomesDetails = function(evt) {
+            if (evt[0]) {
+                defineSelectedCategory(evt[0].label);
+                $scope.selectedCategoryValues = $scope.monthlyResponse.categorizedOutcomes[$scope.selectedCategory];
+                $scope.selectedCategorySum = '-' + evt[0].value.toString();
+            }
+        };
+
+        $scope.viewIncomesDetails = function(evt) {
+            if (evt[0]) {
+                defineSelectedCategory(evt[0].label);
+                $scope.selectedCategoryValues = $scope.monthlyResponse.categorizedIncomes[$scope.selectedCategory];
+                $scope.selectedCategorySum = '+' + evt[0].value.toString();
+            }
+        };
+
+        retrieveMonthlyRecords();
     };
-    HomeCtrl.$inject = ['$scope', 'AccountRecord'];
+    HomeCtrl.$inject = ['$scope', 'AccountRecord', 'Category'];
 
     var RecordsCtrl = function($scope, AccountRecord) {
         $scope.removeRecord = function(record) {

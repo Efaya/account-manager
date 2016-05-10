@@ -3,7 +3,7 @@
     angular.module("accountManagerApp.services", []);
     angular.module("accountManagerApp.directives", []);
     angular.module("accountManagerApp.filters", []);
-    angular.module("accountManagerApp", ["ngResource", "ngRoute", "accountManagerApp.controllers", "accountManagerApp.services", "accountManagerApp.directives", "accountManagerApp.filters"]).config(['$routeProvider',
+    angular.module("accountManagerApp", ["ngResource", "ngRoute", "chart.js", "accountManagerApp.controllers", "accountManagerApp.services", "accountManagerApp.directives", "accountManagerApp.filters"]).config(['$routeProvider',
         function($routeProvider) {
             $routeProvider.
                 when('/import', {

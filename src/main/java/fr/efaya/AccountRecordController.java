@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Created by KTIFA FAMILY on 28/03/2016.
@@ -33,12 +36,22 @@ public class AccountRecordController {
         return accountRecordService.findAll();
     }
 
-    @RequestMapping(value = "/monthly", method = RequestMethod.GET)
-    public List<AccountRecord> retrieveAccountRecordsForDate(Date refDate) {
-        LocalDate date = refDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate start = date.withDayOfMonth(1);
-        LocalDate end = date.withDayOfMonth(date.lengthOfMonth());
-        return accountRecordService.findByDateBetween(Date.from(Instant.from(start.atStartOfDay())), Date.from(Instant.from(end.atStartOfDay())));
+    @RequestMapping(value = "/monthly", method = RequestMethod.POST)
+    public MonthResponse retrieveAccountRecordsForDate(@RequestBody MonthRequest monthRequest) {
+        LocalDate date = monthRequest.getMonthRef().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate start = date.minusMonths(monthRequest.getPastMonths()).withDayOfMonth(1);
+        LocalDate end = date.minusMonths(monthRequest.getPastMonths()).withDayOfMonth(date.minusMonths(monthRequest.getPastMonths()).lengthOfMonth());
+        List<AccountRecord> records = accountRecordService.findByDateBetween(start, end);
+        List<AccountRecord> outcomes = records.stream().filter(r -> r.getValue() < 0.0).collect(Collectors.toList());
+        List<AccountRecord> incomes = records.stream().filter(r -> r.getValue() > 0.0).collect(Collectors.toList());
+        MonthResponse response = new MonthResponse();
+        response.setRecords(records);
+        response.setMonth(date.minusMonths(monthRequest.getPastMonths()).getMonth().getValue());
+        response.setSumIncomes(incomes.stream().mapToDouble(r -> Math.abs(r.getValue())).sum());
+        response.setSumOutcomes(outcomes.stream().mapToDouble(r -> Math.abs(r.getValue())).sum());
+        response.setCategorizedIncomes(incomes.stream().collect(Collectors.groupingBy(AccountRecord::getCategory)));
+        response.setCategorizedOutcomes(outcomes.stream().collect(Collectors.groupingBy(AccountRecord::getCategory)));
+        return response;
     }
 
     public File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
