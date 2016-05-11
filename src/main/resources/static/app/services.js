@@ -2,7 +2,8 @@
     var AccountRecordFactory = function($resource) {
         return $resource('/accountRecord/:id/:obj', {id: '@id', obj: '@obj'}, {
             addLabel: {method: 'POST'},
-            monthly: {method: 'POST'}
+            monthly: {method: 'POST'},
+            yearly: {method: 'POST', isArray: true}
         });
     };
     AccountRecordFactory.$inject = ['$resource'];

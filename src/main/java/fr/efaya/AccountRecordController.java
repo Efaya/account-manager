@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -47,11 +48,24 @@ public class AccountRecordController {
         MonthResponse response = new MonthResponse();
         response.setRecords(records);
         response.setMonth(date.minusMonths(monthRequest.getPastMonths()).getMonth().getValue());
-        response.setSumIncomes(incomes.stream().mapToDouble(r -> Math.abs(r.getValue())).sum());
-        response.setSumOutcomes(outcomes.stream().mapToDouble(r -> Math.abs(r.getValue())).sum());
+        response.setSumIncomes(incomes.stream().mapToDouble(r -> Math.floor(Math.abs(r.getValue()) * 100) / 100).sum());
+        response.setSumOutcomes(outcomes.stream().mapToDouble(r -> Math.floor(Math.abs(r.getValue()) * 100) / 100).sum());
         response.setCategorizedIncomes(incomes.stream().collect(Collectors.groupingBy(AccountRecord::getCategory)));
         response.setCategorizedOutcomes(outcomes.stream().collect(Collectors.groupingBy(AccountRecord::getCategory)));
         return response;
+    }
+
+    @RequestMapping(value = "/yearly/{year}", method = RequestMethod.POST)
+    public Double[] retrieveAccountRecordsForDate(@PathVariable Integer year, @RequestBody(required = false) String category) {
+        final String cat = category != null ? category : "";
+        Double[] values = new Double[12];
+        for (Month month : Month.values()) {
+            LocalDate start = LocalDate.of(year, month, 1);
+            LocalDate end = LocalDate.of(year, month, month.maxLength());
+            double sum = Math.floor(accountRecordService.findByDateBetween(start, end).stream().filter(r -> r.getCategory().equals(cat)).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
+            values[month.getValue() - 1] = sum;
+        }
+        return values;
     }
 
     public File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException

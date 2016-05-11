@@ -43,24 +43,28 @@
 .records-block .records-list {
     cursor: pointer;
 }
-.container.home .infos a {
+.container-fluid.home .infos a {
     cursor: pointer;
 }
-.container.home ul {
+.container-fluid.home ul {
     list-style: none;
     padding: 0;
 }
-.container.home ul li.entry {
+.container-fluid.home ul li.entry {
     border-bottom: 1px dashed lightgray;
     margin-bottom: 3px;
     padding-bottom: 3px;
     line-height: 35px;
 }
-.container.home span.depense {
+.container-fluid.home span.depense {
     font-weight: bold;
     color: red;
 }
-.container.home span.revenue {
+.container-fluid.home span.revenue {
     font-weight: bold;
     color: green;
+}
+.container-fluid.home {
+    padding-left: 10% !important;
+    padding-right: 10% !important;
 }

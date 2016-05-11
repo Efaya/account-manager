@@ -131,6 +131,7 @@
         $scope.selectedCategorySum = 0;
         $scope.pastMonths = 1;
         $scope.labels = [];
+        $scope.yearly = [];
         const defaultCategory = 'Non traité';
 
         Category.query(function (response) {
@@ -187,11 +188,15 @@
 
         $scope.viewPastMonth = function() {
             $scope.pastMonths++;
+            $scope.yearly = [];
+            $scope.selectedCategory = false;
             retrieveMonthlyRecords();
         };
 
         $scope.viewNextMonth = function() {
             $scope.pastMonths--;
+            $scope.yearly = [];
+            $scope.selectedCategory = false;
             retrieveMonthlyRecords();
         };
 
@@ -201,6 +206,9 @@
             });
             $scope.selectedCategory = category.length > 0 ? category[0].id : '';
             $scope.selectedCategoryLabel = refLabel;
+            AccountRecord.yearly({'id':'yearly', 'obj': new Date().getFullYear()}, $scope.selectedCategory, function (res) {
+                $scope.yearly = res;
+            });
         }
 
         $scope.viewOutcomesDetails = function(evt) {
