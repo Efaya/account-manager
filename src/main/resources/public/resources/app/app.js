@@ -7,19 +7,19 @@
         function($routeProvider) {
             $routeProvider.
                 when('/import', {
-                    templateUrl: 'partials/import.html',
+                    templateUrl: 'resources/partials/import.html',
                     controller: 'ImportCtrl'
                 })
                 .when('/records', {
-                    templateUrl: 'partials/records.html',
+                    templateUrl: 'resources/partials/records.html',
                     controller: 'RecordsCtrl'
                 })
                 .when('/category', {
-                    templateUrl: 'partials/category.html',
+                    templateUrl: 'resources/partials/category.html',
                     controller: 'CategoryCtrl'
                 })
                 .when('/home', {
-                    templateUrl: 'partials/home.html',
+                    templateUrl: 'resources/partials/home.html',
                     controller: 'HomeCtrl'
                 })
                 .otherwise({

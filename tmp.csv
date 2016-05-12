@@ -1,102 +1,88 @@
- 01/03/2016;-11,65;Carte;; CB  CYDICE MONTIGNY  29/02/16  ;;;0;Divers 
- 01/03/2016;-10;Virement;;VIR.PERMANENT KTIFA             ;;;;
- 01/03/2016;-15;Virement;;VIR.PERMANENT KTIFA             ;;;;
- 01/03/2016;-250;Virement;;VIR.PERMANENT FILY              ;;;;
- 01/03/2016;73,9;;;;VIREMENT CPAM DES YVELINES      ;;;
- 01/03/2016;-38,37;Virement;;PRLV SEPA ASSURANCE LCL         ;;;;
- 02/03/2016;-709,41;Chèque;1298211;;;;;
- 02/03/2016;-15,1;Carte;; CB  MCDONALDS 1383   01/03/16  ;;;0;Divers 
- 02/03/2016;-21;Carte;; CB  PARC ZOOLOGIQUE  01/03/16  ;;;0;Divers 
- 03/03/2016;-88,65;Carte;; CB  E.LECLERC DRIVE  02/03/16  ;;;0;Divers 
- 03/03/2016;-8,9;Carte;; CB  BAGELS CITY      02/03/16  ;;;0;Divers 
- 03/03/2016;-80,23;Carte;; CB  AMAZON EU SARL   01/03/16  ;;;0;Divers 
- 03/03/2016;-11,88;Carte;; CB  CARREFOUR TPE    01/03/16  ;;;0;Divers 
- 03/03/2016;-598,04;;;;PRET IMMOBILIER ECH 03/03/16    ;;;
- 03/03/2016;-659,28;;;;PRET IMMOBILIER ECH 03/03/16    ;;;
- 03/03/2016;32,1;;;;VIREMENT MNT SANTE PRESTATION   ;;;
- 04/03/2016;-23;Chèque;1298209;;;;;
- 04/03/2016;-62,75;Chèque;1298202;;;;;
- 04/03/2016;-23,4;Carte;; CB  PHIE DU PARC     03/03/16  ;;;0;Divers 
- 04/03/2016;-52;Virement;;PRLV SEPA SAUR                  ;;;;
- 07/03/2016;-7,5;Carte;; CB  BAGELS CITY      04/03/16  ;;;0;Divers 
- 07/03/2016;-35,4;Carte;; CB  LE COZY          04/03/16  ;;;0;Divers 
- 07/03/2016;-3,9;Carte;; CB  QPARK CMT        04/03/16  ;;;0;Divers 
- 07/03/2016;-44,7;Carte;; CB  OUCHEN           04/03/16  ;;;0;Divers 
- 07/03/2016;-12;Carte;; CB  HALLE CHAUSSURES 04/03/16  ;;;0;Divers 
- 07/03/2016;-48,58;Carte;; CB  COFICAD          04/03/16  ;;;0;Divers 
- 07/03/2016;-5,79;Carte;; CB  CARREFOUR TPE    04/03/16  ;;;0;Divers 
- 07/03/2016;-3,6;Virement;;PRLV SEPA SPB                   ;;;;
- 08/03/2016;-21;Chèque;1298213;;;;;
- 08/03/2016;-73,8;Chèque;1298210;;;;;
- 08/03/2016;-66,7;Carte;; CB  DOMINO S PIZZA   07/03/16  ;;;0;Divers 
- 08/03/2016;-7,42;Virement;;PRLV SEPA U - PREDICA           ;;;;
- 08/03/2016;-7,42;Virement;;PRLV SEPA U - PREDICA           ;;;;
- 08/03/2016;174,37;;;;VIREMENT CAF DES YVELINES       ;;;
- 09/03/2016;-12,26;Carte;; CB  SPAT G20         08/03/16  ;;;0;Divers 
- 10/03/2016;-20;Carte;; CB  MGP*LEETCHI.COM  09/03/16  ;;;0;Divers 
- 10/03/2016;-51;Carte;; CB  L HAMBOURG       09/03/16  ;;;0;Divers 
- 10/03/2016;-5,79;Carte;; CB  CARREFOUR TPE    08/03/16  ;;;0;Divers 
- 10/03/2016;-108,11;Virement;;PRLV SEPA MAAF ASSURANCES SA    ;;;;
- 10/03/2016;19,6;;;;VIREMENT CPAM DES YVELINES      ;;;
- 11/03/2016;-30;Chèque;1298212;;;;;
- 11/03/2016;-54,17;Carte;; CB  RELAIS ELF JOUAR 10/03/16  ;;;0;Divers 
- 11/03/2016;-27;Carte;; CB  FRANCK PROVOST   10/03/16  ;;;0;Divers 
- 11/03/2016;-37,88;Carte;; CB  PHARMACIE ADDA   10/03/16  ;;;0;Divers 
- 14/03/2016;-13,5;Carte;; CB  SPAT G20         12/03/16  ;;;0;Divers 
- 14/03/2016;-21,19;Carte;; CB  SPAT G20         12/03/16  ;;;0;Divers 
- 14/03/2016;-16,96;Carte;; CB  PRIMEUR DU CHATE 12/03/16  ;;;0;Divers 
- 14/03/2016;-60;Carte;; CB  ZOO DE THOIRY    12/03/16  ;;;0;Divers 
- 14/03/2016;-21,5;Carte;; CB  BURGER KING      11/03/16  ;;;0;Divers 
- 14/03/2016;8,4;;;;VIREMENT MNT SANTE PRESTATION   ;;;
- 14/03/2016;-24,99;Virement;;PRLV SEPA Orange                ;;;;
- 15/03/2016;-81,93;Carte;; CB  E.LECLERC DRIVE  14/03/16  ;;;0;Divers 
- 15/03/2016;14,6;;;;VIREMENT CPAM DES YVELINES      ;;;
- 16/03/2016;120;;;;REM CHQ 00001CH 1962138 000000  ;;;
- 16/03/2016;-454;Virement;;PRLV SEPA DIRECTION GENERALE D  ;;;;
- 16/03/2016;-107;Virement;;PRLV SEPA DIRECTION GENERALE D  ;;;;
- 17/03/2016;-35,8;Carte;; CB  LE BONNARD       16/03/16  ;;;0;Divers 
- 17/03/2016;-18;Carte;; CB  MIDI A 14 HEURES 13/03/16  ;;;0;Divers 
- 17/03/2016;6,9;;;;VIREMENT MNT SANTE PRESTATION   ;;;
- 18/03/2016;-43,3;Carte;; CB  MACAO KITCHEN    17/03/16  ;;;0;Divers 
- 18/03/2016;-5,69;Carte;; CB  CARREFOUR TPE    16/03/16  ;;;0;Divers 
- 21/03/2016;-67,99;Carte;; CB  LESJOUETSENBOIS  19/03/16  ;;;0;Divers 
- 21/03/2016;-29,8;Carte;; CB  HORTI SERVICE    19/03/16  ;;;0;Divers 
- 21/03/2016;-14,42;Carte;; CB  SPAT G20         19/03/16  ;;;0;Divers 
- 21/03/2016;-26,3;Carte;; CB  LA PEUPLERAIE    19/03/16  ;;;0;Divers 
- 21/03/2016;-20;Carte;; CB  LE HIR JOEL      19/03/16  ;;;0;Divers 
- 21/03/2016;-100;Carte;; CB  RETRAIT DU  19/03          ;;;0;Divers 
- 22/03/2016;-10,9;Carte;; CB  EVEIL&JEUX       21/03/16  ;;;0;Divers 
- 22/03/2016;-9,95;Carte;; CB  LGR 115          21/03/16  ;;;0;Divers 
- 22/03/2016;-22,44;Carte;; CB  PHARMACIE ADDA   21/03/16  ;;;0;Divers 
- 22/03/2016;1700;Virement;;;VIREMENT FILY                   ;;;
- 23/03/2016;-27,05;Carte;; CB  SPAT G20         22/03/16  ;;;0;Divers 
- 23/03/2016;-13;Carte;; CB  PARC ZOO LOISIRS 22/03/16  ;;;0;Divers 
- 24/03/2016;-28;Chèque;1298214;;;;;
- 24/03/2016;-34;Chèque;1298207;;;;;
- 24/03/2016;-40;Carte;; CB  L HAMBOURG       23/03/16  ;;;0;Divers 
- 24/03/2016;-45,63;Carte;; CB  E.LECLERC        23/03/16  ;;;0;Divers 
- 25/03/2016;-5,29;Carte;; CB  CARREFOUR TPE    23/03/16  ;;;0;Divers 
- 25/03/2016;-3,45;;;;COTISATION MENSUELLE CARTE 814  ;;;
- 25/03/2016;-3,45;;;;COTISATION MENSUELLE CARTE 019  ;;;
- 25/03/2016;-1497,6;Chèque;1298215;;;;;
- 29/03/2016;-38,75;Carte;; CB  GIFI             25/03/16  ;;;0;Divers 
- 29/03/2016;-50,4;Carte;; CB  LE COZY          25/03/16  ;;;0;Divers 
- 29/03/2016;-109,13;Carte;; CB  AUCHAN MAUREPAS  25/03/16  ;;;0;Divers 
- 29/03/2016;-60;Carte;; CB  SPAT G20         25/03/16  ;;;0;Divers 
- 29/03/2016;-6,5;Carte;; CB  PRIMEUR DU CHATE 26/03/16  ;;;0;Divers 
- 29/03/2016;-18,47;Carte;; CB  INTERMARCHE      27/03/16  ;;;0;Divers 
- 29/03/2016;-60;Carte;; CB  LAPAGANTHE       26/03/16  ;;;0;Divers 
- 29/03/2016;-30;Carte;; CB  RETRAIT DU  27/03          ;;;0;Divers 
- 29/03/2016;-10,52;Carte;; CB  CARREFOUR TPE    25/03/16  ;;;0;Divers 
- 29/03/2016;-5,1;Carte;; CB  CARREFOUR TPE    24/03/16  ;;;0;Divers 
- 29/03/2016;1412,79;;;;VIREMENT CFP MONTFORT L'AMAURY  ;;;
- 29/03/2016;-97,72;Virement;;PRLV SEPA EDF clients particul  ;;;;
- 29/03/2016;-63,99;Virement;;PRLV SEPA Orange                ;;;;
- 29/03/2016;-81,07;Carte;; CB  KIABI S A        25/03/16  ;;;0;Divers 
- 30/03/2016;-79,04;Carte;; CB  SPAT G20         28/03/16  ;;;0;Divers 
- 30/03/2016;1,05;;;;LCL A LA CARTE                  ;;;
- 31/03/2016;-4,6;Carte;; CB  CARREFOUR TPE    29/03/16  ;;;0;Divers 
- 31/03/2016;2964,02;;;;VIREMENT 4D CONCEPT 4D CONCEPT  ;;;
- 31/03/2016;19,6;;;;VIREMENT CPAM DES YVELINES      ;;;
- 31/03/2016;-20;Carte;; CB  L HAMBOURG       30/03/16  ;;;0;Divers 
- 31/03/2016;3325,52;;;08962 017154Y ;;;;
+ 01/04/2016;-693,41;Chèque;1298217;;;;;
+ 01/04/2016;-3,9;Carte;; CB  CARREFOUR TPE    30/03/16  ;;;0;Divers 
+ 01/04/2016;-10;Virement;;VIR.PERMANENT KTIFA             ;;;;
+ 01/04/2016;-15;Virement;;VIR.PERMANENT KTIFA             ;;;;
+ 01/04/2016;-250;Virement;;VIR.PERMANENT FILY              ;;;;
+ 01/04/2016;-38,37;Virement;;PRLV SEPA ASSURANCE LCL         ;;;;
+ 03/04/2016;-598,04;;;;PRET IMMOBILIER ECH 03/04/16    ;;;
+ 03/04/2016;-659,28;;;;PRET IMMOBILIER ECH 03/04/16    ;;;
+ 04/04/2016;-41,09;Carte;; CB  SPAT G20         02/04/16  ;;;0;Divers 
+ 04/04/2016;-42,63;Carte;; CB  SPAT G20         02/04/16  ;;;0;Divers 
+ 04/04/2016;-4,35;Carte;; CB  CARREFOUR TPE    01/04/16  ;;;0;Divers 
+ 04/04/2016;-4,35;Carte;; CB  CARREFOUR TPE    31/03/16  ;;;0;Divers 
+ 04/04/2016;8,4;;;;VIREMENT MNT SANTE PRESTATION   ;;;
+ 04/04/2016;-13,9;Carte;; CB  LE COZY          01/04/16  ;;;0;Divers 
+ 04/04/2016;-24;Carte;; CB  PIZZA DELIESSCH  01/04/16  ;;;0;Divers 
+ 05/04/2016;-62,65;Carte;; CB  SANTE DISCOUNT   04/04/16  ;;;0;Divers 
+ 05/04/2016;-114,33;Carte;; CB  E.LECLERC DRIVE  04/04/16  ;;;0;Divers 
+ 05/04/2016;-48,82;Carte;; CB  COFICAD          04/04/16  ;;;0;Divers 
+ 05/04/2016;-28,98;Carte;; CB  PHARMACIE ADDA   04/04/16  ;;;0;Divers 
+ 05/04/2016;-52;Virement;;PRLV SEPA SAUR                  ;;;;
+ 06/04/2016;-4,35;Carte;; CB  CARREFOUR TPE    04/04/16  ;;;0;Divers 
+ 06/04/2016;-7,42;Virement;;PRLV SEPA U - PREDICA           ;;;;
+ 06/04/2016;-7,42;Virement;;PRLV SEPA U - PREDICA           ;;;;
+ 06/04/2016;-3,6;Virement;;PRLV SEPA SPB                   ;;;;
+ 07/04/2016;-16,58;Carte;; CB  7 A AUTO         06/04/16  ;;;0;Divers 
+ 07/04/2016;-23,7;Carte;; CB  TOURS            06/04/16  ;;;0;Divers 
+ 07/04/2016;-44,9;Carte;; CB  AMAZON EU SARL   06/04/16  ;;;0;Divers 
+ 07/04/2016;-24;Carte;; CB  L HAMBOURG       06/04/16  ;;;0;Divers 
+ 07/04/2016;340;;;;VIREMENT AVILOG                 ;;;
+ 08/04/2016;-28;Chèque;1298216;;;;;
+ 08/04/2016;-50;Carte;; CB  RETRAIT DU  08/04          ;;;0;Divers 
+ 08/04/2016;-4,04;Carte;; CB  CARREFOUR TPE    06/04/16  ;;;0;Divers 
+ 08/04/2016;58;;;;REM CHQ 00001CH 1962484 000000  ;;;
+ 08/04/2016;-108,11;Virement;;PRLV SEPA MAAF ASSURANCES SA    ;;;;
+ 08/04/2016;174,37;;;;VIREMENT CAF DES YVELINES       ;;;
+ 11/04/2016;-21,4;Carte;; CB  LRM BELLA VITA   08/04/16  ;;;0;Divers 
+ 11/04/2016;-6,9;Carte;; CB  MONOPRIX  0324   08/04/16  ;;;0;Divers 
+ 11/04/2016;-36;Carte;; CB  KIABI S A        09/04/16  ;;;0;Divers 
+ 11/04/2016;-56,76;Carte;; CB  ALLIER DOYET     10/04/16  ;;;0;Divers 
+ 11/04/2016;-38,4;Carte;; CB  ASF   USSEL EST  10/04/16  ;;;0;Divers 
+ 11/04/2016;-31,5;Carte;; CB  ANIMALIS         09/04/16  ;;;0;Divers 
+ 11/04/2016;-5,79;Carte;; CB  CARREFOUR TPE    08/04/16  ;;;0;Divers 
+ 11/04/2016;-9,19;Carte;; CB  CARREFOUR TPE    07/04/16  ;;;0;Divers 
+ 12/04/2016;-10,14;Carte;; CB  ECOMARCHE        11/04/16  ;;;0;Divers 
+ 12/04/2016;-24,99;Virement;;PRLV SEPA Orange                ;;;;
+ 13/04/2016;-28,81;Carte;; CB  PETIT CASINO     12/04/16  ;;;0;Divers 
+ 14/04/2016;-28;Chèque;1298219;;;;;
+ 14/04/2016;-35,8;Carte;; CB  COFIR ALLAINVIL  13/04/16  ;;;0;Divers 
+ 14/04/2016;-21,3;Carte;; CB  ECOMARCHE STATI  13/04/16  ;;;0;Divers 
+ 14/04/2016;-22,9;Carte;; CB  HRC33621MARMAGN3 13/04/16  ;;;0;Divers 
+ 15/04/2016;-17,4;Carte;; CB  PHIE DU PARC     14/04/16  ;;;0;Divers 
+ 18/04/2016;-94,96;Carte;; CB  SPAT G20         14/04/16  ;;;0;Divers 
+ 18/04/2016;-40;Carte;; CB  RETRAIT DU  16/04          ;;;0;Divers 
+ 18/04/2016;-454;Virement;;PRLV SEPA DIRECTION GENERALE D  ;;;;
+ 18/04/2016;-107;Virement;;PRLV SEPA DIRECTION GENERALE D  ;;;;
+ 20/04/2016;-7,62;Carte;; CB  SPAT G20         19/04/16  ;;;0;Divers 
+ 21/04/2016;-50,48;Carte;; CB  COFICAD          20/04/16  ;;;0;Divers 
+ 22/04/2016;-29,9;Carte;; CB  L EFFET MER      21/04/16  ;;;0;Divers 
+ 22/04/2016;-22,5;Carte;; CB  MCDONALDS 186    21/04/16  ;;;0;Divers 
+ 25/04/2016;-29,23;Chèque;1298220;;;;;
+ 25/04/2016;-15,99;Carte;; CB  PHIE DE COURREGE 23/04/16  ;;;0;Divers 
+ 25/04/2016;-3,4;Carte;; CB  SEREP STMALO BS  23/04/16  ;;;0;Divers 
+ 25/04/2016;-76,99;Virement;;PRLV SEPA Orange                ;;;;
+ 25/04/2016;-97,72;Virement;;PRLV SEPA EDF clients particul  ;;;;
+ 26/04/2016;-34,64;Chèque;1298218;;;;;
+ 26/04/2016;1000;Virement;;;VIREMENT FILY PA                ;;;
+ 26/04/2016;1509,6;;;;REM CHQ 00002CH 1298194 000000  ;;;
+ 26/04/2016;-3,55;;;;COTISATION MENSUELLE CARTE 814  ;;;
+ 26/04/2016;-3,55;;;;COTISATION MENSUELLE CARTE 019  ;;;
+ 27/04/2016;-19,5;Carte;; CB  LE BONNARD       26/04/16  ;;;0;Divers 
+ 27/04/2016;-8,55;Carte;; CB  CYDICE MONTIGNY  26/04/16  ;;;0;Divers 
+ 27/04/2016;-25;Carte;; CB  PAVE DU CANAL    26/04/16  ;;;0;Divers 
+ 27/04/2016;1414,81;;;;VIREMENT CFP MONTFORT L'AMAURY  ;;;
+ 28/04/2016;-1000;Chèque;1298223;;;;;
+ 28/04/2016;-99,34;Carte;; CB  E.LECLERC DRIVE  26/04/16  ;;;0;Divers 
+ 28/04/2016;-500;Carte;; CB  RETRAIT DU  28/04          ;;;0;Divers 
+ 28/04/2016;-30;Carte;; CB  L HAMBOURG       27/04/16  ;;;0;Divers 
+ 28/04/2016;1,07;;;;LCL A LA CARTE                  ;;;
+ 29/04/2016;-21,18;Chèque;1298222;;;;;
+ 29/04/2016;-1645,8;Chèque;1298227;;;;;
+ 29/04/2016;-150;Carte;; CB  RETRAIT DU  28/04          ;;;0;Divers 
+ 29/04/2016;-22,98;Carte;; CB  PHARMACIE ADDA   28/04/16  ;;;0;Divers 
+ 29/04/2016;-7,5;Carte;; CB  PAUL             28/04/16  ;;;0;Divers 
+ 29/04/2016;-5,79;Carte;; CB  CARREFOUR TPE    27/04/16  ;;;0;Divers 
+ 29/04/2016;1700;Virement;;;VIREMENT FILY                   ;;;
+ 29/04/2016;2964,02;;;;VIREMENT 4D CONCEPT 4D CONCEPT  ;;;
+ 29/04/2016;-76,87;Carte;; CB  AMAZON EU SARL   28/04/16  ;;;0;Divers 
+ 29/04/2016;4389,25;;;08962 017154Y ;;;;
