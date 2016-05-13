@@ -30,13 +30,15 @@
     };
     AccountManagerController.$inject = ['$scope', 'AccountRecord', 'Category'];
 
-    var ImportCtrl = function($scope, $http, AccountRecord) {
+    var ImportCtrl = function($scope, $http, AccountRecord, $timeout) {
         $scope.ctx = {
             categoryNewLabel: '',
             categoryNewValue: '',
             csvFile: undefined
 
         };
+
+        $scope.success = 0;
         $scope.selectedCategory = {};
 
         $scope.import = function () {
@@ -48,9 +50,9 @@
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).success(function () {
-                console.log('Import success!');
                 AccountRecord.query(function(response) {
                     $scope.records = [];
+                    $scope.success = response.length;
                     for (var recordKey in response) {
                         var record = response[recordKey];
                         var recordDate = new Date(record.date);
@@ -62,6 +64,9 @@
                         }
                         $scope.records[recordDate.getFullYear()][$scope.months[recordDate.getMonth()]].push(record);
                     }
+                    $timeout(function() {
+                        $scope.success = 0;
+                    }, 5000);
                 });
             }).error(function () {
                 console.log('ERROR : Import failed!');
@@ -69,7 +74,7 @@
         };
     };
 
-    ImportCtrl.$inject = ['$scope', '$http', 'AccountRecord'];
+    ImportCtrl.$inject = ['$scope', '$http', 'AccountRecord', '$timeout'];
 
     var CategoryCtrl = function($scope, $http, Category) {
         $scope.selectCategory = function(category) {

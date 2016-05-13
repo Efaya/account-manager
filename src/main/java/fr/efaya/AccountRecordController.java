@@ -33,9 +33,14 @@ public class AccountRecordController {
     @Autowired
     private AccountRecordService accountRecordService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<AccountRecord> retrieveAccountRecords() {
+    @RequestMapping(value = "all", method = RequestMethod.GET)
+    public List<AccountRecord> retrieveAllAccountRecords() {
         return accountRecordService.findAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public List<AccountRecord> retrieveAccountRecords(Principal principal) {
+        return accountRecordService.findAllByUsername(principal.getName());
     }
 
     @RequestMapping(value = "/monthly", method = RequestMethod.POST)
@@ -43,7 +48,7 @@ public class AccountRecordController {
         LocalDate date = monthRequest.getMonthRef().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate start = date.minusMonths(monthRequest.getPastMonths()).withDayOfMonth(1);
         LocalDate end = date.minusMonths(monthRequest.getPastMonths()).withDayOfMonth(date.minusMonths(monthRequest.getPastMonths()).lengthOfMonth());
-        List<AccountRecord> records = accountRecordService.findByDateBetween(start, end);
+        List<AccountRecord> records = accountRecordService.findByDateBetween(start, end, principal.getName());
         List<AccountRecord> outcomes = records.stream().filter(r -> r.getValue() < 0.0).collect(Collectors.toList());
         List<AccountRecord> incomes = records.stream().filter(r -> r.getValue() > 0.0).collect(Collectors.toList());
         MonthResponse response = new MonthResponse();
@@ -57,26 +62,26 @@ public class AccountRecordController {
     }
 
     @RequestMapping(value = "/yearly-incomes/{year}", method = RequestMethod.POST)
-    public Double[] retrieveAccountRecordsForDateIncomes(@PathVariable Integer year, @RequestBody(required = false) String category) {
+    public Double[] retrieveAccountRecordsForDateIncomes(@PathVariable Integer year, @RequestBody(required = false) String category, Principal principal) {
         final String cat = category != null ? category : "";
         Double[] values = new Double[12];
         for (Month month : Month.values()) {
             LocalDate start = LocalDate.of(year, month, 1);
             LocalDate end = LocalDate.of(year, month, month.maxLength());
-            double sum = Math.floor(accountRecordService.findByDateBetweenAndCategory(start, end, cat).stream().filter(r -> r.getValue() > 0).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
+            double sum = Math.floor(accountRecordService.findByDateBetweenAndCategory(start, end, cat, principal.getName()).stream().filter(r -> r.getValue() > 0).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
             values[month.getValue() - 1] = sum;
         }
         return values;
     }
 
     @RequestMapping(value = "/yearly-outcomes/{year}", method = RequestMethod.POST)
-    public Double[] retrieveAccountRecordsForDateOutcomes(@PathVariable Integer year, @RequestBody(required = false) String category) {
+    public Double[] retrieveAccountRecordsForDateOutcomes(@PathVariable Integer year, @RequestBody(required = false) String category, Principal principal) {
         final String cat = category != null ? category : "";
         Double[] values = new Double[12];
         for (Month month : Month.values()) {
             LocalDate start = LocalDate.of(year, month, 1);
             LocalDate end = LocalDate.of(year, month, month.maxLength());
-            double sum = Math.floor(accountRecordService.findByDateBetweenAndCategory(start, end, cat).stream().filter(r -> r.getValue() < 0).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
+            double sum = Math.floor(accountRecordService.findByDateBetweenAndCategory(start, end, cat, principal.getName()).stream().filter(r -> r.getValue() < 0).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
             values[month.getValue() - 1] = sum;
         }
         return values;
@@ -86,13 +91,14 @@ public class AccountRecordController {
     {
         File convFile = new File("tmp.csv");
         FileCopyUtils.copy(multipart.getBytes(), convFile);
+        convFile.deleteOnExit();
         return convFile;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void importCsvFile(@RequestBody MultipartFile file) throws IOException, ParseException {
+    public void importCsvFile(@RequestBody MultipartFile file, Principal principal) throws IOException, ParseException {
         if (FilenameUtils.isExtension(file.getOriginalFilename(), "csv")) {
-            accountRecordService.importFile(multipartToFile(file));
+            accountRecordService.importFile(multipartToFile(file), principal.getName());
         }
     }
 

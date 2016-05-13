@@ -22,6 +22,9 @@
 .container.import .import-btn {
     margin-top: 5px;
 }
+.container.import .alert {
+    margin-top: 25px;
+}
 .records-block ul {
     list-style: none;
     padding: 0;
@@ -67,6 +70,10 @@
 .container-fluid.home {
     padding-left: 10% !important;
     padding-right: 10% !important;
+}
+.no-data {
+    color: gray;
+    font-style: italic;
 }
 .login {
     margin-top: 15px;

@@ -13,6 +13,7 @@ import java.util.List;
  */
 @Repository
 public interface AccountRecordsRepository extends MongoRepository<AccountRecord, String> {
-    List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to);
-    List<AccountRecord> findByDateBetweenAndCategory(LocalDate from, LocalDate to, String category);
+    List<AccountRecord> findByUsername(String username);
+    List<AccountRecord> findByDateBetweenAndUsername(LocalDate from, LocalDate to, String username);
+    List<AccountRecord> findByDateBetweenAndCategoryAndUsername(LocalDate from, LocalDate to, String category, String username);
 }

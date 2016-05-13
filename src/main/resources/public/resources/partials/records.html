@@ -1,6 +1,9 @@
 <div class="records-block col-md-12">
     <ul class="col-md-12">
-        <li class="col-md-12" ng-repeat="year in years">
+        <li ng-if="records.length == 0" class="col-md-12" >
+            <h3 class="no-data">Vous n'avez aucune donnée disponible</h3>
+        </li>
+        <li ng-if="records.length > 0" class="col-md-12" ng-repeat="year in years">
             <h2>Année {{year}}</h2>
             <ul class="col-md-12">
                 <li class="col-md-12" ng-repeat="month in months | reverse">

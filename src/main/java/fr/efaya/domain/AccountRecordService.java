@@ -35,20 +35,24 @@ public class AccountRecordService {
         return accountRecordsRepository.save(record);
     }
 
-    public List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to) {
-        return accountRecordsRepository.findByDateBetween(from, to);
+    public List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to, String username) {
+        return accountRecordsRepository.findByDateBetweenAndUsername(from, to, username);
     }
 
 
-    public List<AccountRecord> findByDateBetweenAndCategory(LocalDate start, LocalDate end, String cat) {
-        return accountRecordsRepository.findByDateBetweenAndCategory(start, end, cat);
+    public List<AccountRecord> findByDateBetweenAndCategory(LocalDate start, LocalDate end, String cat, String username) {
+        return accountRecordsRepository.findByDateBetweenAndCategoryAndUsername(start, end, cat, username);
     }
 
     public List<AccountRecord> findAll() {
         return accountRecordsRepository.findAll();
     }
 
-    private void handleRecord(String lineRecord, List<Category> categories) {
+    public List<AccountRecord> findAllByUsername(String username) {
+        return accountRecordsRepository.findByUsername(username);
+    }
+
+    private void handleRecord(String lineRecord, List<Category> categories, String username) {
         String[] tokens = lineRecord.split(";");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
@@ -62,6 +66,7 @@ public class AccountRecordService {
             accountRecord.setLabel(label);
             accountRecord.setType(type);
             accountRecord.setValue(value);
+            accountRecord.setUsername(username);
             accountRecord.setCategory(guessCategory(label, categories));
             //System.out.println(date + " --> " + value + " (" + type + ") : " + label);
 
@@ -81,7 +86,7 @@ public class AccountRecordService {
         return "";
     }
 
-    public void importFile(File file) throws ParseException, IOException {
+    public void importFile(File file, String username) throws ParseException, IOException {
         String line;
         try (
                 InputStream fis = new FileInputStream(file);
@@ -90,7 +95,7 @@ public class AccountRecordService {
         ) {
             List<Category> categories = categoriesRepository.findAll();
             while ((line = br.readLine()) != null) {
-                handleRecord(line, categories);
+                handleRecord(line, categories, username);
             }
         } catch (IOException e) {
             e.printStackTrace();
