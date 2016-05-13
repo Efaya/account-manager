@@ -7,27 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/resources/css/signin.css" rel="stylesheet" />
+    <link href="/resources/css/footer.css" rel="stylesheet" />
     <title>Gestion des comptes - Login</title>
 </head>
 <body>
+    <div id="wrap">
+        <div class="container">
+            <div class="alert alert-danger" th:if="${param.error}">
+                Nom d'utilisateur inconnu ou mot de passe incorrect.
+            </div>
+            <div class="alert alert-info" th:if="${param.logout}">
+                Vous avez été déconnecté.
+            </div>
+            <form th:action="@{/login}" method="post" class="form-signin">
+                <h2 class="form-signin-heading">Connexion</h2>
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="" autofocus=""/>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="" />
 
-    <div class="container">
-        <div class="alert alert-danger" th:if="${param.error}">
-            Nom d'utilisateur inconnu ou mot de passe incorrect.
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+
         </div>
-        <div class="alert alert-info" th:if="${param.logout}">
-            Vous avez été déconnecté.
+    </div>
+    <div class="footer">
+        <div class="container">
+            <p class="text-muted">Réalisé par <a href="mailto:sahbi.ktifa@gmail.com">Sahbi Ktifa</a> - Powered by <img src="/resources/img/boot.png"/><img src="/resources/img/mongodb.png"/><img src="/resources/img/angular.png"/></p>
         </div>
-        <form th:action="@{/login}" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Connexion</h2>
-            <label for="inputUsername" class="sr-only">Username</label>
-            <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="" autofocus=""/>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="" />
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-
     </div>
 </body>
 </html>
