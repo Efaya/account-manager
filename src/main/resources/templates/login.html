@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="/resources/css/signin.css" rel="stylesheet" />
+    <title>Gestion des comptes - Login</title>
 </head>
 <body>
 
@@ -18,7 +19,7 @@
             Vous avez été déconnecté.
         </div>
         <form th:action="@{/login}" method="post" class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
+            <h2 class="form-signin-heading">Connexion</h2>
             <label for="inputUsername" class="sr-only">Username</label>
             <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="" autofocus=""/>
             <label for="inputPassword" class="sr-only">Password</label>

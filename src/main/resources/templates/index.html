@@ -7,6 +7,7 @@
         <link href="/resources/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="/resources/bower_components/angular-chart.js/dist/angular-chart.css" rel="stylesheet" />
         <link href="/resources/css/app.css" rel="stylesheet" />
+        <title>Gestion des comptes - Home</title>
     </head>
     <body ng-app="accountManagerApp" ng-controller="AccountManagerController">
         <nav class="navbar navbar-default navbar-static-top">
@@ -31,6 +32,9 @@
                         <form th:action="@{/logout}" method="post" style="margin-top: 8px;">
                             <button type="submit" class="btn"><i class="glyphicon glyphicon-off"/></button>
                         </form>
+                    </div>
+                    <div class="login nav navbar-nav navbar-right">
+                        <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
                     </div>
                 </div>
             </div>

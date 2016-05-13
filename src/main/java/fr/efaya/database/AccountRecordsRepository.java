@@ -14,4 +14,5 @@ import java.util.List;
 @Repository
 public interface AccountRecordsRepository extends MongoRepository<AccountRecord, String> {
     List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to);
+    List<AccountRecord> findByDateBetweenAndCategory(LocalDate from, LocalDate to, String category);
 }

@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +37,11 @@ public class AccountRecordService {
 
     public List<AccountRecord> findByDateBetween(LocalDate from, LocalDate to) {
         return accountRecordsRepository.findByDateBetween(from, to);
+    }
+
+
+    public List<AccountRecord> findByDateBetweenAndCategory(LocalDate start, LocalDate end, String cat) {
+        return accountRecordsRepository.findByDateBetweenAndCategory(start, end, cat);
     }
 
     public List<AccountRecord> findAll() {

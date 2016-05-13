@@ -200,20 +200,20 @@
             retrieveMonthlyRecords();
         };
 
-        function defineSelectedCategory(refLabel) {
+        function defineSelectedCategory(refLabel, suffix) {
             var category = $scope.categories.filter(function (val) {
                 return val.label === refLabel;
             });
             $scope.selectedCategory = category.length > 0 ? category[0].id : '';
             $scope.selectedCategoryLabel = refLabel;
-            AccountRecord.yearly({'id':'yearly', 'obj': new Date().getFullYear()}, $scope.selectedCategory, function (res) {
+            AccountRecord.yearly({'id':'yearly-' + suffix, 'obj': new Date().getFullYear()}, $scope.selectedCategory, function (res) {
                 $scope.yearly = res;
             });
         }
 
         $scope.viewOutcomesDetails = function(evt) {
             if (evt[0]) {
-                defineSelectedCategory(evt[0].label);
+                defineSelectedCategory(evt[0].label, 'outcomes');
                 $scope.selectedCategoryValues = $scope.monthlyResponse.categorizedOutcomes[$scope.selectedCategory];
                 $scope.selectedCategorySum = '-' + evt[0].value.toString();
             }
@@ -221,7 +221,7 @@
 
         $scope.viewIncomesDetails = function(evt) {
             if (evt[0]) {
-                defineSelectedCategory(evt[0].label);
+                defineSelectedCategory(evt[0].label, 'incomes');
                 $scope.selectedCategoryValues = $scope.monthlyResponse.categorizedIncomes[$scope.selectedCategory];
                 $scope.selectedCategorySum = '+' + evt[0].value.toString();
             }

@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -38,7 +39,7 @@ public class AccountRecordController {
     }
 
     @RequestMapping(value = "/monthly", method = RequestMethod.POST)
-    public MonthResponse retrieveAccountRecordsForDate(@RequestBody MonthRequest monthRequest) {
+    public MonthResponse retrieveAccountRecordsForDate(@RequestBody MonthRequest monthRequest, Principal principal) {
         LocalDate date = monthRequest.getMonthRef().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate start = date.minusMonths(monthRequest.getPastMonths()).withDayOfMonth(1);
         LocalDate end = date.minusMonths(monthRequest.getPastMonths()).withDayOfMonth(date.minusMonths(monthRequest.getPastMonths()).lengthOfMonth());
@@ -55,14 +56,27 @@ public class AccountRecordController {
         return response;
     }
 
-    @RequestMapping(value = "/yearly/{year}", method = RequestMethod.POST)
-    public Double[] retrieveAccountRecordsForDate(@PathVariable Integer year, @RequestBody(required = false) String category) {
+    @RequestMapping(value = "/yearly-incomes/{year}", method = RequestMethod.POST)
+    public Double[] retrieveAccountRecordsForDateIncomes(@PathVariable Integer year, @RequestBody(required = false) String category) {
         final String cat = category != null ? category : "";
         Double[] values = new Double[12];
         for (Month month : Month.values()) {
             LocalDate start = LocalDate.of(year, month, 1);
             LocalDate end = LocalDate.of(year, month, month.maxLength());
-            double sum = Math.floor(accountRecordService.findByDateBetween(start, end).stream().filter(r -> r.getCategory().equals(cat)).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
+            double sum = Math.floor(accountRecordService.findByDateBetweenAndCategory(start, end, cat).stream().filter(r -> r.getValue() > 0).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
+            values[month.getValue() - 1] = sum;
+        }
+        return values;
+    }
+
+    @RequestMapping(value = "/yearly-outcomes/{year}", method = RequestMethod.POST)
+    public Double[] retrieveAccountRecordsForDateOutcomes(@PathVariable Integer year, @RequestBody(required = false) String category) {
+        final String cat = category != null ? category : "";
+        Double[] values = new Double[12];
+        for (Month month : Month.values()) {
+            LocalDate start = LocalDate.of(year, month, 1);
+            LocalDate end = LocalDate.of(year, month, month.maxLength());
+            double sum = Math.floor(accountRecordService.findByDateBetweenAndCategory(start, end, cat).stream().filter(r -> r.getValue() < 0).mapToDouble(r -> Math.abs(r.getValue())).sum() * 100) / 100;
             values[month.getValue() - 1] = sum;
         }
         return values;
