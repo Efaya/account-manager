@@ -39,7 +39,7 @@ public class RegisterController {
     public void confirmRegistration(@PathVariable String userId, @PathVariable String token) {
         String tokenDecoded = new String(Base64.getDecoder().decode(token.getBytes()));
         if ("EFAYA".equals(tokenDecoded)) {
-            User user = usersRepository.findByUsername(userId);
+            User user = usersRepository.findOne(userId);
             user.setValid(true);
             usersRepository.save(user);
         }
