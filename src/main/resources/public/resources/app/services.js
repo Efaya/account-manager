@@ -13,6 +13,14 @@
     };
     CategoryFactory.$inject = ['$resource'];
 
+    var UserFactory = function($resource) {
+        return $resource('/registration/:obj', {obj: '@obj'}, {
+            list: {method:'GET', params:{'obj':'list'}, isArray: true}
+        });
+    };
+    UserFactory.$inject = ['$resource'];
+
     angular.module("accountManagerApp.services").factory("AccountRecord", AccountRecordFactory);
     angular.module("accountManagerApp.services").factory("Category", CategoryFactory);
+    angular.module("accountManagerApp.services").factory("User", UserFactory);
 }(angular));

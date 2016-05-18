@@ -7,6 +7,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -25,8 +26,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/resources/**").permitAll()
-                .antMatchers("/").permitAll()
+                .antMatchers("/resources/css/**").permitAll()
+                .antMatchers("/resources/app/register/**").permitAll()
+                .antMatchers("/resources/img/**").permitAll()
+                .antMatchers("/resources/bower_components/**").permitAll()
+                .antMatchers("/registration/**").permitAll()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

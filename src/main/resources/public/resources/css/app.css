@@ -1,3 +1,6 @@
+.category-block {
+    padding-bottom: 75px;
+}
 .category-block ul {
     list-style: none;
 }
@@ -78,4 +81,7 @@
 .login {
     margin-top: 15px;
     margin-right: 5px !important;;
+}
+.user-block ul {
+    list-style: none;
 }

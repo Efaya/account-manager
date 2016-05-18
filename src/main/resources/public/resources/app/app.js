@@ -22,6 +22,10 @@
                     templateUrl: 'resources/partials/home.html',
                     controller: 'HomeCtrl'
                 })
+                .when('/users', {
+                    templateUrl: 'resources/partials/users.html',
+                    controller: 'UsersCtrl'
+                })
                 .otherwise({
                     redirectTo: '/home'
                 });

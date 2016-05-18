@@ -31,8 +31,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         if (user == null || !password.equals(user.getPassword())) {
             throw new BadCredentialsException("Username is unknown or password is incorrect");
         }
+        if (!user.isValid()) {
+            throw new BadCredentialsException("User is not validated");
+        }
         // Pour finir on retourne un objet de type Authentication
-        return new UsernamePasswordAuthenticationToken(name, password, Collections.singletonList(new SimpleGrantedAuthority("COMMON_USER")));
+        return new UsernamePasswordAuthenticationToken(name, password, Collections.singletonList(new SimpleGrantedAuthority(user.getRole())));
     }
 
     @Override

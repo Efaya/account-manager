@@ -12,7 +12,7 @@
         </canvas>
     </div>
     <div class="col-lg-6" ng-if="monthlyResponse.records.length > 0">
-        <h2>Revenue : +{{monthlyResponse.sumIncomes | number:2}}</h2>
+        <h2>Revenus : +{{monthlyResponse.sumIncomes | number:2}}</h2>
         <canvas id="bar-income" class="chart chart-bar"
                 chart-data="dataIncomes" chart-labels="labels" chart-click="viewIncomesDetails">
         </canvas>
