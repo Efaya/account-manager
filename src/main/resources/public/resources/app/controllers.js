@@ -149,6 +149,7 @@
             });
             $scope.labels.push(defaultCategory);
             $scope.labels.sort();
+            retrieveMonthlyRecords();
         });
 
         function buildCategorizedResult(ref) {
@@ -232,8 +233,6 @@
                 $scope.selectedCategorySum = '+' + evt[0].value.toString();
             }
         };
-
-        retrieveMonthlyRecords();
     };
     HomeCtrl.$inject = ['$scope', 'AccountRecord', 'Category'];
 
