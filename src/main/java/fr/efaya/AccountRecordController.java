@@ -2,25 +2,22 @@ package fr.efaya;
 
 import fr.efaya.domain.AccountRecord;
 import fr.efaya.domain.AccountRecordService;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.ParseException;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -87,18 +84,16 @@ public class AccountRecordController {
         return values;
     }
 
-    public File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException
-    {
-        File convFile = new File("tmp.csv");
-        FileCopyUtils.copy(multipart.getBytes(), convFile);
-        convFile.deleteOnExit();
-        return convFile;
-    }
-
     @RequestMapping(method = RequestMethod.POST)
-    public void importCsvFile(@RequestBody MultipartFile file, Principal principal) throws IOException, ParseException {
+    public void importCsvFile(@RequestBody MultipartFile file, @RequestParam String fileType, Principal principal) throws IOException, ParseException {
         if (FilenameUtils.isExtension(file.getOriginalFilename(), "csv")) {
-            accountRecordService.importFile(multipartToFile(file), principal.getName());
+            File tempFile = File.createTempFile(AccountManagerApplication.ROOT, ".csv");
+            BufferedOutputStream stream = new BufferedOutputStream(
+                    new FileOutputStream(tempFile));
+            FileCopyUtils.copy(file.getInputStream(), stream);
+            stream.close();
+
+            accountRecordService.importFile(tempFile, principal.getName(), fileType);
         }
     }
 

@@ -22,11 +22,20 @@
 .category-block ul li button.btn {
     float: right;
 }
+/**
+**
+** IMPORT SECTION
+**
+*/
 .container.import .import-btn {
     margin-top: 5px;
 }
 .container.import .alert {
     margin-top: 25px;
+}
+.container.import select {
+    display: block;
+    margin-top: 5px;
 }
 .records-block ul {
     list-style: none;

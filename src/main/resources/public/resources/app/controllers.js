@@ -35,10 +35,11 @@
         $scope.ctx = {
             categoryNewLabel: '',
             categoryNewValue: '',
-            csvFile: undefined
-
+            csvFile: undefined,
+            fileTypes: ['LCL']
         };
 
+        $scope.fileType = $scope.ctx.fileTypes[0];
         $scope.success = 0;
         $scope.selectedCategory = {};
 
@@ -47,7 +48,7 @@
             fd.append('file', $scope.ctx.csvFile);
 
 
-            $http.post('/accountRecord', fd, {
+            $http.post('/accountRecord?fileType=' + $scope.fileType, fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).success(function () {

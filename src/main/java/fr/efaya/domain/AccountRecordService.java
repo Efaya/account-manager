@@ -2,18 +2,16 @@ package fr.efaya.domain;
 
 import fr.efaya.database.AccountRecordsRepository;
 import fr.efaya.database.CategoriesRepository;
+import fr.efaya.domain.filereader.FileParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.text.DateFormat;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by KTIFA FAMILY on 15/04/2016.
@@ -26,6 +24,9 @@ public class AccountRecordService {
 
     @Autowired
     private CategoriesRepository categoriesRepository;
+
+    @Autowired
+    private List<FileParser> parsers;
 
     public void delete(String id) {
         accountRecordsRepository.delete(id);
@@ -52,54 +53,18 @@ public class AccountRecordService {
         return accountRecordsRepository.findByUsername(username);
     }
 
-    private void handleRecord(String lineRecord, List<Category> categories, String username) {
-        String[] tokens = lineRecord.split(";");
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date date = df.parse(tokens[0]);
-            Float value = Float.parseFloat(tokens[1].replace(",", "."));
-            String type = tokens[2];
-            String label = tokens.length > 4 ? (value > 0 || tokens[2].length() == 0 ? tokens[5].trim() : tokens[4].trim()) : "";
-
-            AccountRecord accountRecord = new AccountRecord();
-            accountRecord.setDate(date);
-            accountRecord.setLabel(label);
-            accountRecord.setType(type);
-            accountRecord.setValue(value);
-            accountRecord.setUsername(username);
-            accountRecord.setCategory(guessCategory(label, categories));
-            //System.out.println(date + " --> " + value + " (" + type + ") : " + label);
-
-            accountRecordsRepository.save(accountRecord);
-        } catch (Exception e) {
-            System.out.println("ERROR : " + lineRecord);
+    public void importFile(File file, String username, String fileType) throws ParseException, IOException {
+        if (parsers != null) {
+            Optional<FileParser> parser = parsers.stream().filter(p -> p.accept(fileType)).findFirst();
+            parser.ifPresent(p -> {
+                try {
+                    p.parseFile(file, username).stream().forEach(accountRecordsRepository::save);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
-    }
-
-    private String guessCategory(String label, List<Category> categories) {
-        final String value = label.contains("   ") ? label.split("   ")[0] : label;
-        for (Category c : categories) {
-            if (c.getValues().indexOf(value) > -1 || c.getValues().stream().anyMatch(value::startsWith)) {
-                return c.getId();
-            }
-        }
-        return "";
-    }
-
-    public void importFile(File file, String username) throws ParseException, IOException {
-        String line;
-        try (
-                InputStream fis = new FileInputStream(file);
-                InputStreamReader isr = new InputStreamReader(fis, Charset.forName("UTF-8"));
-                BufferedReader br = new BufferedReader(isr)
-        ) {
-            List<Category> categories = categoriesRepository.findAll();
-            while ((line = br.readLine()) != null) {
-                handleRecord(line, categories, username);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        file.deleteOnExit();
     }
 
     public void addLabelToCategory(String id, String label) {

@@ -13,6 +13,8 @@ import java.util.List;
 @SpringBootApplication
 public class AccountManagerApplication implements CommandLineRunner {
 
+    public static String ROOT = "upload-dir";
+
     @Autowired
     private UsersRepository usersRepository;
 
