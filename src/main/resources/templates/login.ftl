@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,13 +12,14 @@
 <body ng-app="registerManagerApp">
     <div id="wrap">
         <div class="container">
-            <div class="alert alert-danger" th:if="${param.error}">
-                Nom d'utilisateur inconnu, mot de passe incorrect ou l'utilisateur n'a pas été validé.
-            </div>
-            <div class="alert alert-info" th:if="${param.logout}">
-                Vous avez été déconnecté.
-            </div>
-            <form th:action="@{/login}" method="post" class="form-signin">
+            <#if error.isPresent()>
+                <div class="alert alert-danger">Nom d'utilisateur inconnu, mot de passe incorrect ou l'utilisateur n'a pas été validé.</div>
+            </#if>
+            <#if logout.isPresent()>
+                <div class="alert alert-info">Vous avez été déconnecté.</div>
+            </#if>
+
+            <form role="form" action="/login" method="post" class="form-signin">
                 <h2 class="form-signin-heading">Connexion</h2>
                 <label for="inputUsername" class="sr-only">Username</label>
                 <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="" autofocus=""/>

@@ -1,5 +1,7 @@
+<#assign user = principal />
+<#assign authorities = authorities />
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="fr">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -29,20 +31,21 @@
                             <li><a href="#/records">Mes données</a></li>
                             <li><a href="#/category">Categories</a></li>
                             <li><a href="#/import">Import</a></li>
-                            <li ng-if="user.role === 'ADMIN'"><a href="#/users">Utilisateurs</a></li>
+                            <#if authorities?seq_contains("ADMIN")>
+                                <li><a href="#/users">Utilisateurs</a></li>
+                            </#if>
                         </ul>
                         <div class="nav navbar-nav navbar-right">
-                            <form th:action="@{/logout}" method="post" style="margin-top: 8px;">
-                                <button type="submit" class="btn"><i class="glyphicon glyphicon-off"/></button>
+                            <form role="form" action="/logout" method="post" style="margin-top: 8px;">
+                                <button type="submit" class="btn"><i class="glyphicon glyphicon-off"></i></button>
                             </form>
                         </div>
                         <div class="login nav navbar-nav navbar-right">
-                            <span th:inline="text">[[${#httpServletRequest.remoteUser}]]</span>
+                            ${user}
                         </div>
                     </div>
                 </div>
             </nav>
-
             <div ng-view="true"></div>
         </div>
         <div class="footer">

@@ -1,5 +1,5 @@
 (function(angular) {
-    var AccountManagerController = function($scope, AccountRecord, Category, User) {
+    var AccountManagerController = function($scope, AccountRecord, Category) {
         $scope.months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
         $scope.years = ["2016"];
 
@@ -27,9 +27,8 @@
         };
         $scope.refreshRecords();
         $scope.refreshCategories();
-        $scope.user = User.get();
     };
-    AccountManagerController.$inject = ['$scope', 'AccountRecord', 'Category', 'User'];
+    AccountManagerController.$inject = ['$scope', 'AccountRecord', 'Category'];
 
     var ImportCtrl = function($scope, $http, AccountRecord, $timeout) {
         $scope.ctx = {

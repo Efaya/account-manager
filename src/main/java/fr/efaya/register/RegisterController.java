@@ -45,29 +45,20 @@ public class RegisterController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public List<User> listUsers(Principal principal) {
-        if (principal != null) {
+    public List<User> listUsers() {
+        /*if (principal != null) {
             User user = usersRepository.findByUsername(principal.getName());
             if (!"ADMIN".equals(user.getRole())) {
                 throw new RuntimeException("Insufficient rights");
             }
-            List<User> users = usersRepository.findAll();
-            users.stream().forEach(u -> u.setPassword(null));
-            return users;
-        }
-        return null;
-    }
-
-    @RequestMapping(method = RequestMethod.GET)
-    public User getUserInfo(Principal principal) {
-        User user = null;
-        if (principal != null) {
-            user = usersRepository.findByUsername(principal.getName());
-            user.setPassword(null);
-            user.setEmail(null);
-        }
-        return user;
+        */
+        List<User> users = usersRepository.findAll();
+        users.stream().forEach(u -> u.setPassword(null));
+        return users;
+        /*}
+        return null;*/
     }
 
     public void sendEmail(User user, String contextPath) throws MessagingException {
