@@ -6,7 +6,7 @@
     <groupId>fr.efaya</groupId>
     <artifactId>account-manager</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>account-manager</name>
     <description>Personal Bank Account manager</description>
