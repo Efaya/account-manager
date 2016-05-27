@@ -16,18 +16,26 @@ import java.util.Optional;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(path = "/login", method = RequestMethod.GET)
     public ModelAndView getLoginPage(@RequestParam Optional<String> error, @RequestParam Optional<String> logout) {
         ModelAndView mav = new ModelAndView("login", "error", error);
         mav.addObject("logout", logout);
         return mav;
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(path = "/index", method = RequestMethod.GET)
     public ModelAndView getLoginPage(Principal principal) {
+        return retrieveHomePageMav(principal);
+    }
+
+    @RequestMapping(path = "/", method = RequestMethod.GET)
+    public ModelAndView getHomePage(Principal principal) {
+        return retrieveHomePageMav(principal);
+    }
+
+    private ModelAndView retrieveHomePageMav(Principal principal) {
         ModelAndView mav = new ModelAndView("index", "principal", principal.getName());
         mav.addObject("authorities", SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         return mav;
     }
-
 }
