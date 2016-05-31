@@ -32,8 +32,6 @@
 
     var ImportCtrl = function($scope, $http, AccountRecord, $timeout) {
         $scope.ctx = {
-            categoryNewLabel: '',
-            categoryNewValue: '',
             csvFile: undefined,
             fileTypes: ['LCL']
         };
@@ -78,6 +76,11 @@
     ImportCtrl.$inject = ['$scope', '$http', 'AccountRecord', '$timeout'];
 
     var CategoryCtrl = function($scope, $http, Category) {
+        $scope.ctx = {
+            categoryNewLabel: '',
+            categoryNewValue: ''
+        };
+
         $scope.selectCategory = function(category) {
             $scope.selectedCategory = category;
         };
@@ -99,7 +102,7 @@
         $scope.removeCategoryValue = function(idx) {
             $scope.selectedCategory.values.splice(idx, 1);
             saveCategory($scope.selectedCategory, function() {
-                console.log('Category saved ' + category.label + ' (' + category.id + ') saved');
+                console.log('Category saved ' + $scope.selectedCategory.label + ' (' + $scope.selectedCategory.id + ') saved');
             });
         };
 
@@ -107,7 +110,7 @@
             $scope.selectedCategory.values.push($scope.ctx.categoryNewValue);
             $scope.ctx.categoryNewValue = '';
             saveCategory($scope.selectedCategory, function() {
-                console.log('Category saved ' + category.label + ' (' + category.id + ') saved');
+                console.log('Category saved ' + $scope.selectedCategory.label + ' (' + $scope.selectedCategory.id + ') saved');
             });
         };
 
