@@ -22,11 +22,11 @@
             <form role="form" action="/login" method="post" class="form-signin">
                 <h2 class="form-signin-heading">Connexion</h2>
                 <label for="inputUsername" class="sr-only">Username</label>
-                <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="" autofocus=""/>
+                <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Nom d'utilisateur" required="" autofocus=""/>
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="" />
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mot de passe" required="" />
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
             </form>
             <div class="form-register" ng-controller="RegistrationCtrl">
                 <div ng-if="registrationSuccess" class="alert alert-success" role="alert">Enregistrement réussi, vous allez recevoir un email de confirmation.</div>
@@ -70,7 +70,7 @@
                             <div class="control-group">
                                 <!-- Button -->
                                 <div class="controls">
-                                    <button type="submit" ng-disabled="!registerForm.$valid || (register.confirm != undefined &amp;&amp; register.confirm !== register.password)" class="btn btn-success">Register</button>
+                                    <button type="submit" ng-disabled="!registerForm.$valid || (register.confirm != undefined &amp;&amp; register.confirm !== register.password)" class="btn btn-success">S'enregistrer</button>
                                 </div>
                             </div>
                         </div>
