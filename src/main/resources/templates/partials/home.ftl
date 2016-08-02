@@ -1,6 +1,6 @@
 <div class="container-fluid home">
     <div class="col-lg-12 row infos">
-        <h2>Entrée du mois : {{months[monthlyResponse.month - 1]}} ({{monthlyResponse.records.length}} entrées)</h2>
+        <h2>Entrée du mois : {{months[monthlyResponse.month - 1]}} {{monthlyResponse.year}} ({{monthlyResponse.records.length}} entrées)</h2>
         <a ng-click="viewPastMonth()" >Aller au mois précédent</a><span ng-if="pastMonths > 1"> | <a ng-click="viewNextMonth()" >Revenir au mois de {{months[monthlyResponse.month]}}</a></span>
         <div>Résultat du mois : <span ng-class="{'revenue':monthlyResponse.sumIncomes - monthlyResponse.sumOutcomes > 0 , 'depense':monthlyResponse.sumIncomes - monthlyResponse.sumOutcomes < 0}">{{monthlyResponse.sumIncomes - monthlyResponse.sumOutcomes | number:2}}</span></div>
         <h3 class="no-data" ng-if="monthlyResponse.records.length == 0">Aucune donnée pour ce mois</h3>

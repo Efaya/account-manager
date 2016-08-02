@@ -12,6 +12,7 @@ import java.util.Map;
 public class MonthResponse implements Serializable {
     private List<AccountRecord> records;
     private Integer month;
+    private Integer year;
     private double sumIncomes;
     private double sumOutcomes;
     private Map<String, List<AccountRecord>> categorizedIncomes;
@@ -31,6 +32,14 @@ public class MonthResponse implements Serializable {
 
     public void setMonth(Integer month) {
         this.month = month;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
     public double getSumIncomes() {

@@ -7,7 +7,7 @@
         </#if>
     </ul>
     <div class="col-md-6" ng-if="selectedCategory.label">
-        <h3>Cat&eacute;gorie : {{selectedCategory.label}}</h3>
+        <h3>Cat&eacute;gorie : <input type="text" ng-model="selectedCategory.label" style="width: 60%"/> <button type="button" ng-click="updateCategory()" class="btn btn-primary">Corriger label</button></h3>
         <ul>
             <li class="entry" ng-repeat="value in selectedCategory.values">
                 <div>

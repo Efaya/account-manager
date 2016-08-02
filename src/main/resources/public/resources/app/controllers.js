@@ -39,8 +39,10 @@
         $scope.fileType = $scope.ctx.fileTypes[0];
         $scope.success = 0;
         $scope.selectedCategory = {};
+        $scope.importing = false;
 
         $scope.import = function () {
+            $scope.importing = true;
             var fd = new FormData();
             fd.append('file', $scope.ctx.csvFile);
 
@@ -49,6 +51,7 @@
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             }).success(function () {
+                $scope.importing = false;
                 AccountRecord.query(function(response) {
                     $scope.records = [];
                     $scope.success = response.length;
@@ -68,6 +71,7 @@
                     }, 5000);
                 });
             }).error(function () {
+                $scope.importing = false;
                 console.log('ERROR : Import failed!');
             });
         };

@@ -29,7 +29,9 @@
                         <ul class="nav navbar-nav">
                             <li><a href="#/home">Home</a></li>
                             <li><a href="#/records">Mes données</a></li>
-                            <li><a href="#/category">Categories</a></li>
+                            <#if authorities?seq_contains("ADMIN")>
+                                <li><a href="#/category">Categories</a></li>
+                            </#if>
                             <li><a href="#/import">Import</a></li>
                             <#if authorities?seq_contains("ADMIN")>
                                 <li><a href="#/users">Utilisateurs</a></li>

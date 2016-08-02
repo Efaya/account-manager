@@ -51,6 +51,7 @@ public class AccountRecordController {
         MonthResponse response = new MonthResponse();
         response.setRecords(records);
         response.setMonth(date.minusMonths(monthRequest.getPastMonths()).getMonth().getValue());
+        response.setYear(date.minusMonths(monthRequest.getPastMonths()).getYear());
         response.setSumIncomes(incomes.stream().mapToDouble(r -> Math.floor(Math.abs(r.getValue()) * 100) / 100).sum());
         response.setSumOutcomes(outcomes.stream().mapToDouble(r -> Math.floor(Math.abs(r.getValue()) * 100) / 100).sum());
         response.setCategorizedIncomes(incomes.stream().collect(Collectors.groupingBy(AccountRecord::getCategory)));
